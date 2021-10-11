@@ -1,3 +1,0 @@
-export const ADD_CONTACT = 'ADD_CONTACT';
-export const FILTER_CONTACT = 'GET_CONTACT';
-export const DELETE_CONTACT = 'DELETE_CONTACT';

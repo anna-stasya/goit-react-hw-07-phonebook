@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
-//import {  useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/actions';
+
+import phoneOperations from '../../redux/phoneOperations';
 
 import s from './ContactForm.module.css';
 
@@ -27,14 +27,6 @@ function ContactForm({ onSubmit }) {
     }
   };
 
-  //-----------другой вариант записи handleChange------------
-  // const handleNameChange = event => {
-  //   setName(event.currentTarget.value);
-  // };
-  // const handleNumberChange = event => {
-  //   setNumber(event.currentTarget.value);
-  // };
-
   //добавить контакт через кнопку
   const handleSabmit = event => {
     event.preventDefault();
@@ -51,6 +43,7 @@ function ContactForm({ onSubmit }) {
         <input
           type="text"
           name="name"
+          placeholder="Name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
@@ -64,6 +57,7 @@ function ContactForm({ onSubmit }) {
         <input
           type="tel"
           name="number"
+          placeholder="Number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
@@ -80,7 +74,7 @@ function ContactForm({ onSubmit }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: value => dispatch(addContact(value)),
+  onSubmit: value => dispatch(phoneOperations.addContact(value)),
 });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { filterContact } from '../../redux/actions';
-import PropTypes from 'prop-types';
+import phoneActions from '../../redux/phoneActions';
+import phoneSelectors from '../../redux/phoneSelectors';
 import s from './Filter.module.css';
 
 const Filter = ({ value, onChange }) => (
@@ -24,15 +24,12 @@ const Filter = ({ value, onChange }) => (
 );
 
 const mapStateToProps = state => ({
-  value: state.filter,
+  value: phoneSelectors.getFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: event => dispatch(filterContact(event.currentTarget.value)),
+  onChange: event =>
+    dispatch(phoneActions.filterContact(event.currentTarget.value)),
 });
-
-Filter.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
